@@ -1,0 +1,641 @@
+---
+import Layout from "../layouts/Layout.astro";
+import StaffDivider from "../components/StaffDivider.astro";
+
+const instruments = [
+  { name: "Piano", note: "Ages 5+" },
+  { name: "Guitar", note: "Ages 7+, electric or acoustic" },
+  { name: "Voice", note: "Ages 8+, all styles" },
+  { name: "Violin", note: "Ages 5+, Suzuki available" },
+  { name: "Drums", note: "Ages 7+" },
+  { name: "Bass", note: "Ages 10+" },
+];
+
+const principles = [
+  {
+    title: "One student, one plan",
+    body: "No fixed curriculum. Your teacher builds each lesson around the songs you want to play and the pace you actually learn at.",
+  },
+  {
+    title: "You leave able to do something",
+    body: "Every lesson ends with a skill or a passage you can already play, not just notes about what to practice.",
+  },
+  {
+    title: "Practice you'll actually do",
+    body: "Short, specific practice plans — five focused minutes beats an hour of vague repetition.",
+  },
+];
+
+const instructors = [
+  {
+    name: "Marta Woźniak",
+    tag: "PIANO · 14 YRS",
+    bio: "Trained at the Poznań Academy of Music. Teaches classical technique alongside pop and film scores, whichever gets a student to the piano more often.",
+  },
+  {
+    name: "Dawid Kowalczyk",
+    tag: "GUITAR & BASS · 9 YRS",
+    bio: "Session guitarist turned teacher. Starts every new student on a real song in week one, theory gets folded in as it's needed.",
+  },
+  {
+    name: "Ola Bartosik",
+    tag: "VOICE · 11 YRS",
+    bio: "Background in musical theatre and jazz. Focuses on breath and range first, repertoire second — the technique carries any genre.",
+  },
+  {
+    name: "Filip Nowicki",
+    tag: "DRUMS & VIOLIN · 7 YRS",
+    bio: "Teaches both rhythm-first drums for beginners and classical violin fundamentals, often to the same families at different ages.",
+  },
+];
+
+const plans = [
+  {
+    name: "Trial lesson",
+    length: "30 min",
+    price: "free",
+    detail: "One private lesson with an instructor matched to your goals. No commitment after.",
+    highlight: true,
+  },
+  {
+    name: "Standard",
+    length: "30 min / week",
+    price: "180 zł / mo",
+    detail: "Weekly private lesson, four per month, instrument and teacher of your choice.",
+    highlight: false,
+  },
+  {
+    name: "Extended",
+    length: "45 min / week",
+    price: "250 zł / mo",
+    detail: "More room for technique and repertoire — the pace most teens and adults land on.",
+    highlight: false,
+  },
+];
+---
+
+<Layout>
+  <header class="nav">
+    <a class="wordmark" href="#top">
+      <span class="note-mark" aria-hidden="true"></span>
+      Cadence
+    </a>
+    <nav aria-label="Primary">
+      <a href="#instruments">Instruments</a>
+      <a href="#instructors">Instructors</a>
+      <a href="#pricing">Schedule &amp; pricing</a>
+    </nav>
+    <a class="cta-small" href="#pricing">Book a trial lesson</a>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <p class="eyebrow">Cadence Music School · est. 2014</p>
+      <StaffDivider color="var(--brass)" note notePosition={22} />
+      <h1>
+        Learn to play.<br />
+        <em>Really</em> play.
+      </h1>
+      <StaffDivider color="var(--brass)" note notePosition={71} />
+      <p class="hero-sub">
+        Private lessons in piano, guitar, voice, violin, drums, and bass —
+        taught one student at a time by working musicians, for beginners
+        through advancing players.
+      </p>
+      <div class="hero-actions">
+        <a class="cta-primary" href="#pricing">Book a free trial lesson</a>
+        <a class="cta-ghost" href="#instructors">Meet the instructors</a>
+      </div>
+      <p class="meta-line">5 instruments · 12 instructors · lessons from age 5</p>
+    </section>
+
+    <!-- INSTRUMENTS -->
+    <section id="instruments" class="section section--dark">
+      <h2>What you can learn here</h2>
+      <p class="section-sub">
+        Six instruments, taught by people who play them for a living.
+      </p>
+      <ul class="instrument-grid">
+        {instruments.map((inst) => (
+          <li class="instrument-card">
+            <span class="instrument-name">{inst.name}</span>
+            <span class="instrument-note">{inst.note}</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <!-- PRINCIPLES -->
+    <section class="section section--light">
+      <h2>How lessons work</h2>
+      <div class="principles">
+        {principles.map((p) => (
+          <div class="principle">
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- INSTRUCTORS -->
+    <section id="instructors" class="section section--dark">
+      <h2>The instructors</h2>
+      <p class="section-sub">A few of the twelve teachers at Cadence.</p>
+      <div class="instructor-grid">
+        {instructors.map((person) => (
+          <article class="instructor-card">
+            <p class="instructor-tag">{person.tag}</p>
+            <h3>{person.name}</h3>
+            <p>{person.bio}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="section section--light">
+      <h2>Schedule &amp; pricing</h2>
+      <p class="section-sub">
+        Every student starts with a free trial lesson before committing to
+        anything.
+      </p>
+      <div class="plans">
+        {plans.map((plan) => (
+          <div class={`plan ${plan.highlight ? "plan--highlight" : ""}`}>
+            <p class="plan-length">{plan.length}</p>
+            <h3>{plan.name}</h3>
+            <p class="plan-price">{plan.price}</p>
+            <p class="plan-detail">{plan.detail}</p>
+            <a class={plan.highlight ? "cta-primary" : "cta-ghost"} href="#contact">
+              {plan.highlight ? "Book your trial" : "Get started"}
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="contact" class="section section--band">
+      <StaffDivider color="var(--brass)" />
+      <h2>Ready to start?</h2>
+      <p class="band-sub">
+        Tell us the instrument, the age, and the goal — we'll match you with
+        a teacher and get the first lesson on the calendar this week.
+      </p>
+      <a class="cta-primary" href="mailto:hello@cadencemusicschool.example">
+        hello@cadencemusicschool.example
+      </a>
+      <StaffDivider color="var(--brass)" />
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-row">
+      <span class="wordmark small">
+        <span class="note-mark" aria-hidden="true"></span>
+        Cadence
+      </span>
+      <p>ul. Melodyjna 12, Poznań · Mon–Sat, 10:00–20:00</p>
+    </div>
+    <p class="footer-fine">© 2026 Cadence Music School. Every student gets a free trial lesson.</p>
+  </footer>
+</Layout>
+
+<style>
+  /* ---------- NAV ---------- */
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+    background: var(--oxblood);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.25rem;
+    color: var(--ivory);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+
+  .wordmark.small {
+    font-size: 1.05rem;
+  }
+
+  .note-mark {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--brass);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  .nav nav {
+    display: flex;
+    gap: clamp(1rem, 2.5vw, 2.25rem);
+  }
+
+  .nav nav a {
+    color: var(--ivory);
+    text-decoration: none;
+    font-size: 0.92rem;
+    opacity: 0.85;
+    transition: opacity 0.15s ease;
+  }
+
+  .nav nav a:hover {
+    opacity: 1;
+  }
+
+  @media (max-width: 720px) {
+    .nav nav {
+      display: none;
+    }
+  }
+
+  .cta-small {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--oxblood);
+    background: var(--brass);
+    padding: 0.55rem 0.95rem;
+    border-radius: 3px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.15s ease;
+  }
+
+  .cta-small:hover {
+    background: var(--brass-bright);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    background: var(--oxblood);
+    color: var(--ivory);
+    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 6vw, 3rem) clamp(3.5rem, 9vw, 6rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+
+  .hero :global(.staff) {
+    max-width: 720px;
+    width: 100%;
+    margin: 0.35rem 0;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+    font-weight: 500;
+    padding: 0.4rem 0;
+  }
+
+  .hero h1 em {
+    color: var(--brass-bright);
+    font-style: italic;
+    font-weight: 500;
+  }
+
+  .hero-sub {
+    max-width: 46ch;
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    line-height: 1.55;
+    color: color-mix(in srgb, var(--ivory) 88%, transparent);
+    margin-top: 0.5rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .cta-primary {
+    background: var(--brass);
+    color: var(--oxblood-deep);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 4px;
+    font-size: 0.98rem;
+    transition: background 0.15s ease, transform 0.15s ease;
+    display: inline-block;
+  }
+
+  .cta-primary:hover {
+    background: var(--brass-bright);
+    transform: translateY(-1px);
+  }
+
+  .cta-ghost {
+    border: 1px solid color-mix(in srgb, var(--ivory) 40%, transparent);
+    color: var(--ivory);
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 4px;
+    font-size: 0.98rem;
+    transition: border-color 0.15s ease, background 0.15s ease;
+    display: inline-block;
+  }
+
+  .cta-ghost:hover {
+    border-color: var(--brass);
+    background: color-mix(in srgb, var(--ivory) 6%, transparent);
+  }
+
+  .meta-line {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: color-mix(in srgb, var(--ivory) 60%, transparent);
+    margin-top: 1.75rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- SECTIONS (shared) ---------- */
+  .section {
+    padding: clamp(3rem, 7vw, 5.5rem) clamp(1.25rem, 6vw, 3rem);
+  }
+
+  .section--dark {
+    background: var(--oxblood-deep);
+    color: var(--ivory);
+  }
+
+  .section--light {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  .section h2 {
+    font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .section-sub {
+    text-align: center;
+    max-width: 50ch;
+    margin: 0.75rem auto 0;
+    opacity: 0.75;
+    font-size: 1rem;
+  }
+
+  /* ---------- INSTRUMENTS ---------- */
+  .instrument-grid {
+    list-style: none;
+    margin: 2.5rem auto 0;
+    padding: 0;
+    max-width: 960px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: color-mix(in srgb, var(--brass) 35%, transparent);
+    border: 1px solid color-mix(in srgb, var(--brass) 35%, transparent);
+  }
+
+  .instrument-card {
+    background: var(--oxblood-deep);
+    padding: 1.75rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .instrument-name {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+  }
+
+  .instrument-note {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: color-mix(in srgb, var(--ivory) 55%, transparent);
+  }
+
+  @media (max-width: 720px) {
+    .instrument-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ---------- PRINCIPLES ---------- */
+  .principles {
+    max-width: 1000px;
+    margin: 2.5rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .principle h3 {
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+    color: color-mix(in srgb, var(--ink) 85%, var(--oxblood));
+  }
+
+  .principle p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 780px) {
+    .principles {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  /* ---------- INSTRUCTORS ---------- */
+  .instructor-grid {
+    max-width: 1080px;
+    margin: 2.5rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .instructor-card {
+    padding: 1.75rem;
+    border: 1px solid color-mix(in srgb, var(--brass) 30%, transparent);
+  }
+
+  .instructor-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--brass);
+    margin-bottom: 0.6rem;
+  }
+
+  .instructor-card h3 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+
+  .instructor-card p:last-child {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--ivory) 78%, transparent);
+  }
+
+  @media (max-width: 680px) {
+    .instructor-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- PRICING ---------- */
+  .plans {
+    max-width: 1000px;
+    margin: 2.5rem auto 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .plan {
+    background: #fff;
+    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 6px;
+  }
+
+  .plan--highlight {
+    background: var(--oxblood);
+    color: var(--ivory);
+    border-color: var(--brass);
+  }
+
+  .plan-length {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    opacity: 0.65;
+  }
+
+  .plan h3 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    margin: 0.15rem 0 0.1rem;
+  }
+
+  .plan-price {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--brass);
+    margin-bottom: 0.4rem;
+  }
+
+  .plan-detail {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    opacity: 0.85;
+    flex-grow: 1;
+    margin-bottom: 1.25rem;
+  }
+
+  .plan .cta-primary,
+  .plan .cta-ghost {
+    text-align: center;
+    padding: 0.7rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .plan .cta-ghost {
+    border-color: color-mix(in srgb, var(--ink) 25%, transparent);
+    color: var(--ink);
+  }
+
+  @media (max-width: 780px) {
+    .plans {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ---------- FINAL CTA BAND ---------- */
+  .section--band {
+    background: var(--oxblood);
+    color: var(--ivory);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .section--band :global(.staff) {
+    max-width: 480px;
+    width: 100%;
+  }
+
+  .section--band h2 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+  }
+
+  .band-sub {
+    max-width: 46ch;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  /* ---------- FOOTER ---------- */
+  .footer {
+    background: var(--oxblood-deep);
+    color: color-mix(in srgb, var(--ivory) 65%, transparent);
+    padding: 2rem clamp(1.25rem, 6vw, 3rem);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .footer-row p {
+    font-size: 0.85rem;
+  }
+
+  .footer-fine {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    opacity: 0.6;
+  }
+</style>
