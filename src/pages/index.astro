@@ -1,51 +1,60 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import StaffDivider from "../components/StaffDivider.astro";
+import PianoKeys from "../components/PianoKeys.astro";
 
-const instruments = [
-  { name: "Piano", note: "Ages 5+" },
-  { name: "Guitar", note: "Ages 7+, electric or acoustic" },
-  { name: "Voice", note: "Ages 8+, all styles" },
-  { name: "Violin", note: "Ages 5+, Suzuki available" },
-  { name: "Drums", note: "Ages 7+" },
-  { name: "Bass", note: "Ages 10+" },
+const programs = [
+  {
+    name: "Young Beginners",
+    age: "AGES 5–8",
+    body: "First contact with the keys — rhythm games, note-reading, and short pieces that make the first year feel like play, not homework.",
+  },
+  {
+    name: "Kids & Teens",
+    age: "AGES 9–16",
+    body: "Steady technical grounding paired with music the student actually chose — film themes, pop arrangements, and classical staples.",
+  },
+  {
+    name: "Adult Piano",
+    age: "ANY AGE",
+    body: "For adults starting fresh or returning after years away. Flexible scheduling, no recitals required unless you want one.",
+  },
+  {
+    name: "Exam Preparation",
+    age: "GRADES 1–8",
+    body: "Structured prep for ABRSM and local conservatory exams — repertoire, scales, sight-reading, and aural training on a timeline.",
+  },
 ];
 
 const principles = [
   {
     title: "One student, one plan",
-    body: "No fixed curriculum. Your teacher builds each lesson around the songs you want to play and the pace you actually learn at.",
+    body: "No fixed curriculum. Your teacher builds each lesson around the pieces you want to play and the pace you actually learn at.",
   },
   {
     title: "You leave able to do something",
-    body: "Every lesson ends with a skill or a passage you can already play, not just notes about what to practice.",
+    body: "Every lesson ends with a passage you can already play, not just notes about what to practice at home.",
   },
   {
     title: "Practice you'll actually do",
-    body: "Short, specific practice plans — five focused minutes beats an hour of vague repetition.",
+    body: "Short, specific practice plans — ten focused minutes at the keys beats an hour of vague repetition.",
   },
 ];
 
-const instructors = [
+const teachers = [
   {
     name: "Marta Woźniak",
-    tag: "PIANO · 14 YRS",
-    bio: "Trained at the Poznań Academy of Music. Teaches classical technique alongside pop and film scores, whichever gets a student to the piano more often.",
+    tag: "CLASSICAL & EXAM PREP · 14 YRS",
+    bio: "Trained at the Poznań Academy of Music. Leads most of our exam-track students from Grade 1 through Grade 8.",
   },
   {
-    name: "Dawid Kowalczyk",
-    tag: "GUITAR & BASS · 9 YRS",
-    bio: "Session guitarist turned teacher. Starts every new student on a real song in week one, theory gets folded in as it's needed.",
+    name: "Jakub Sikora",
+    tag: "ADULT BEGINNERS · 8 YRS",
+    bio: "Specializes in students starting piano for the first time as adults — patient, practical, no assumed knowledge.",
   },
   {
     name: "Ola Bartosik",
-    tag: "VOICE · 11 YRS",
-    bio: "Background in musical theatre and jazz. Focuses on breath and range first, repertoire second — the technique carries any genre.",
-  },
-  {
-    name: "Filip Nowicki",
-    tag: "DRUMS & VIOLIN · 7 YRS",
-    bio: "Teaches both rhythm-first drums for beginners and classical violin fundamentals, often to the same families at different ages.",
+    tag: "KIDS & TEENS · 11 YRS",
+    bio: "Background in musical theatre. Keeps younger students motivated with repertoire they picked themselves.",
   },
 ];
 
@@ -54,36 +63,42 @@ const plans = [
     name: "Trial lesson",
     length: "30 min",
     price: "free",
-    detail: "One private lesson with an instructor matched to your goals. No commitment after.",
+    detail: "One private lesson with a teacher matched to your goals and age group. No commitment after.",
     highlight: true,
   },
   {
     name: "Standard",
     length: "30 min / week",
     price: "180 zł / mo",
-    detail: "Weekly private lesson, four per month, instrument and teacher of your choice.",
+    detail: "Weekly private lesson, four per month, with the same teacher throughout.",
     highlight: false,
   },
   {
     name: "Extended",
     length: "45 min / week",
     price: "250 zł / mo",
-    detail: "More room for technique and repertoire — the pace most teens and adults land on.",
+    detail: "More room for technique and repertoire — the pace most exam-track and adult students land on.",
     highlight: false,
   },
 ];
+
+// Replace with your real address — the embed and the directions link both read from this.
+const address = "ul. Melodyjna 12, 61-001 Poznań, Poland";
+const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
+const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 ---
 
 <Layout>
   <header class="nav">
     <a class="wordmark" href="#top">
-      <span class="note-mark" aria-hidden="true"></span>
+      <span class="key-mark" aria-hidden="true"></span>
       Cadence
     </a>
     <nav aria-label="Primary">
-      <a href="#instruments">Instruments</a>
-      <a href="#instructors">Instructors</a>
-      <a href="#pricing">Schedule &amp; pricing</a>
+      <a href="#programs">Programs</a>
+      <a href="#teachers">Teachers</a>
+      <a href="#location">Location</a>
+      <a href="#pricing">Pricing</a>
     </nav>
     <a class="cta-small" href="#pricing">Book a trial lesson</a>
   </header>
@@ -91,43 +106,40 @@ const plans = [
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">Cadence Music School · est. 2014</p>
-      <StaffDivider color="var(--brass)" note notePosition={22} />
+      <p class="eyebrow">Cadence Piano School · est. 2014</p>
       <h1>
-        Learn to play.<br />
+        Learn piano.<br />
         <em>Really</em> play.
       </h1>
-      <StaffDivider color="var(--brass)" note notePosition={71} />
       <p class="hero-sub">
-        Private lessons in piano, guitar, voice, violin, drums, and bass —
-        taught one student at a time by working musicians, for beginners
-        through advancing players.
+        Private piano lessons for kids, teens, and adults — one instrument,
+        taught properly, by teachers who play it for a living.
       </p>
       <div class="hero-actions">
         <a class="cta-primary" href="#pricing">Book a free trial lesson</a>
-        <a class="cta-ghost" href="#instructors">Meet the instructors</a>
+        <a class="cta-ghost" href="#programs">See programs</a>
       </div>
-      <p class="meta-line">5 instruments · 12 instructors · lessons from age 5</p>
+      <PianoKeys variant="hero" highlightIndex={8} />
+      <p class="meta-line">4 programs · 6 teachers · ages 5 through adult</p>
     </section>
 
-    <!-- INSTRUMENTS -->
-    <section id="instruments" class="section section--dark">
-      <h2>What you can learn here</h2>
-      <p class="section-sub">
-        Six instruments, taught by people who play them for a living.
-      </p>
-      <ul class="instrument-grid">
-        {instruments.map((inst) => (
-          <li class="instrument-card">
-            <span class="instrument-name">{inst.name}</span>
-            <span class="instrument-note">{inst.note}</span>
-          </li>
+    <!-- PROGRAMS -->
+    <section id="programs" class="section section--black">
+      <h2>Find your program</h2>
+      <p class="section-sub">One instrument, taught at every stage.</p>
+      <div class="program-grid">
+        {programs.map((p) => (
+          <div class="program-card">
+            <p class="program-age">{p.age}</p>
+            <h3>{p.name}</h3>
+            <p>{p.body}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </section>
 
     <!-- PRINCIPLES -->
-    <section class="section section--light">
+    <section class="section section--white">
       <h2>How lessons work</h2>
       <div class="principles">
         {principles.map((p) => (
@@ -139,14 +151,14 @@ const plans = [
       </div>
     </section>
 
-    <!-- INSTRUCTORS -->
-    <section id="instructors" class="section section--dark">
-      <h2>The instructors</h2>
-      <p class="section-sub">A few of the twelve teachers at Cadence.</p>
-      <div class="instructor-grid">
-        {instructors.map((person) => (
-          <article class="instructor-card">
-            <p class="instructor-tag">{person.tag}</p>
+    <!-- TEACHERS -->
+    <section id="teachers" class="section section--mist">
+      <h2>The teachers</h2>
+      <p class="section-sub">A few of the six piano teachers at Cadence.</p>
+      <div class="teacher-grid">
+        {teachers.map((person) => (
+          <article class="teacher-card">
+            <p class="teacher-tag">{person.tag}</p>
             <h3>{person.name}</h3>
             <p>{person.bio}</p>
           </article>
@@ -155,7 +167,7 @@ const plans = [
     </section>
 
     <!-- PRICING -->
-    <section id="pricing" class="section section--light">
+    <section id="pricing" class="section section--white">
       <h2>Schedule &amp; pricing</h2>
       <p class="section-sub">
         Every student starts with a free trial lesson before committing to
@@ -168,7 +180,7 @@ const plans = [
             <h3>{plan.name}</h3>
             <p class="plan-price">{plan.price}</p>
             <p class="plan-detail">{plan.detail}</p>
-            <a class={plan.highlight ? "cta-primary" : "cta-ghost"} href="#contact">
+            <a class={plan.highlight ? "cta-primary" : "cta-ghost"} href="#location">
               {plan.highlight ? "Book your trial" : "Get started"}
             </a>
           </div>
@@ -176,30 +188,60 @@ const plans = [
       </div>
     </section>
 
+    <!-- LOCATION / MAP -->
+    <section id="location" class="section section--black">
+      <h2>Find us</h2>
+      <p class="section-sub">Ten minutes from the city center, easy street parking.</p>
+      <div class="location-layout">
+        <div class="location-info">
+          <dl>
+            <dt>Address</dt>
+            <dd>{address}</dd>
+            <dt>Hours</dt>
+            <dd>Mon–Fri 10:00–20:00<br />Sat 10:00–15:00</dd>
+            <dt>Phone</dt>
+            <dd>+48 61 000 00 00</dd>
+          </dl>
+          <a class="cta-primary" href={directionsHref} target="_blank" rel="noopener noreferrer">
+            Get directions
+          </a>
+        </div>
+        <div class="location-map">
+          <iframe
+            title="Cadence Piano School location"
+            src={mapEmbedSrc}
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
     <!-- FINAL CTA -->
     <section id="contact" class="section section--band">
-      <StaffDivider color="var(--brass)" />
+      <PianoKeys variant="divider" />
       <h2>Ready to start?</h2>
       <p class="band-sub">
-        Tell us the instrument, the age, and the goal — we'll match you with
-        a teacher and get the first lesson on the calendar this week.
+        Tell us the student's age and where they're starting from — we'll
+        match them with a teacher and get the first lesson on the calendar
+        this week.
       </p>
-      <a class="cta-primary" href="mailto:hello@cadencemusicschool.example">
-        hello@cadencemusicschool.example
+      <a class="cta-dark" href="mailto:hello@cadencepianoschool.example">
+        hello@cadencepianoschool.example
       </a>
-      <StaffDivider color="var(--brass)" />
+      <PianoKeys variant="divider" />
     </section>
   </main>
 
   <footer class="footer">
     <div class="footer-row">
       <span class="wordmark small">
-        <span class="note-mark" aria-hidden="true"></span>
+        <span class="key-mark" aria-hidden="true"></span>
         Cadence
       </span>
-      <p>ul. Melodyjna 12, Poznań · Mon–Sat, 10:00–20:00</p>
+      <p>{address} · Mon–Fri 10:00–20:00, Sat 10:00–15:00</p>
     </div>
-    <p class="footer-fine">© 2026 Cadence Music School. Every student gets a free trial lesson.</p>
+    <p class="footer-fine">© 2026 Cadence Piano School. Every student gets a free trial lesson.</p>
   </footer>
 </Layout>
 
@@ -211,7 +253,8 @@ const plans = [
     justify-content: space-between;
     gap: 1.5rem;
     padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
-    background: var(--oxblood);
+    background: var(--white);
+    border-bottom: 2px solid var(--baby-blue);
     position: sticky;
     top: 0;
     z-index: 10;
@@ -220,26 +263,39 @@ const plans = [
   .wordmark {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.55rem;
     font-family: var(--font-display);
     font-weight: 600;
     font-size: 1.25rem;
-    color: var(--ivory);
+    color: var(--black);
     text-decoration: none;
     letter-spacing: 0.01em;
   }
 
   .wordmark.small {
     font-size: 1.05rem;
+    color: var(--white);
   }
 
-  .note-mark {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--brass);
+  .key-mark {
+    width: 12px;
+    height: 16px;
+    background: var(--black);
+    border-radius: 0 0 2px 2px;
     display: inline-block;
     flex-shrink: 0;
+    position: relative;
+  }
+
+  .key-mark::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -3px;
+    width: 5px;
+    height: 9px;
+    background: var(--baby-blue-deep);
+    border-radius: 0 0 1px 1px;
   }
 
   .nav nav {
@@ -248,10 +304,10 @@ const plans = [
   }
 
   .nav nav a {
-    color: var(--ivory);
+    color: var(--ink);
     text-decoration: none;
     font-size: 0.92rem;
-    opacity: 0.85;
+    opacity: 0.75;
     transition: opacity 0.15s ease;
   }
 
@@ -259,7 +315,7 @@ const plans = [
     opacity: 1;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 760px) {
     .nav nav {
       display: none;
     }
@@ -268,8 +324,8 @@ const plans = [
   .cta-small {
     font-family: var(--font-mono);
     font-size: 0.8rem;
-    color: var(--oxblood);
-    background: var(--brass);
+    color: var(--black);
+    background: var(--baby-blue);
     padding: 0.55rem 0.95rem;
     border-radius: 3px;
     text-decoration: none;
@@ -278,14 +334,14 @@ const plans = [
   }
 
   .cta-small:hover {
-    background: var(--brass-bright);
+    background: var(--baby-blue-deep);
   }
 
   /* ---------- HERO ---------- */
   .hero {
-    background: var(--oxblood);
-    color: var(--ivory);
-    padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 6vw, 3rem) clamp(3.5rem, 9vw, 6rem);
+    background: var(--white);
+    color: var(--ink);
+    padding: clamp(3rem, 8vw, 5.5rem) clamp(1.25rem, 6vw, 3rem) 0;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -298,24 +354,18 @@ const plans = [
     font-size: 0.78rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--brass);
+    color: var(--baby-blue-deep);
     margin-bottom: 0.5rem;
-  }
-
-  .hero :global(.staff) {
-    max-width: 720px;
-    width: 100%;
-    margin: 0.35rem 0;
   }
 
   .hero h1 {
     font-size: clamp(2.4rem, 6.5vw, 4.4rem);
     font-weight: 500;
-    padding: 0.4rem 0;
+    color: var(--black);
   }
 
   .hero h1 em {
-    color: var(--brass-bright);
+    color: var(--baby-blue-deep);
     font-style: italic;
     font-weight: 500;
   }
@@ -324,7 +374,7 @@ const plans = [
     max-width: 46ch;
     font-size: clamp(1rem, 1.6vw, 1.15rem);
     line-height: 1.55;
-    color: color-mix(in srgb, var(--ivory) 88%, transparent);
+    color: var(--ink-soft);
     margin-top: 0.5rem;
   }
 
@@ -337,8 +387,8 @@ const plans = [
   }
 
   .cta-primary {
-    background: var(--brass);
-    color: var(--oxblood-deep);
+    background: var(--black);
+    color: var(--white);
     font-weight: 600;
     text-decoration: none;
     padding: 0.85rem 1.6rem;
@@ -349,15 +399,15 @@ const plans = [
   }
 
   .cta-primary:hover {
-    background: var(--brass-bright);
+    background: var(--black-soft);
     transform: translateY(-1px);
   }
 
   .cta-ghost {
-    border: 1px solid color-mix(in srgb, var(--ivory) 40%, transparent);
-    color: var(--ivory);
+    border: 1.5px solid var(--black);
+    color: var(--black);
     text-decoration: none;
-    padding: 0.85rem 1.6rem;
+    padding: 0.83rem 1.6rem;
     border-radius: 4px;
     font-size: 0.98rem;
     transition: border-color 0.15s ease, background 0.15s ease;
@@ -365,15 +415,37 @@ const plans = [
   }
 
   .cta-ghost:hover {
-    border-color: var(--brass);
-    background: color-mix(in srgb, var(--ivory) 6%, transparent);
+    border-color: var(--baby-blue-deep);
+    background: var(--mist);
+  }
+
+  .cta-dark {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.85rem 1.6rem;
+    border-radius: 4px;
+    font-size: 0.98rem;
+    display: inline-block;
+    transition: transform 0.15s ease;
+  }
+
+  .cta-dark:hover {
+    transform: translateY(-1px);
+  }
+
+  .hero :global(.keys.hero) {
+    margin-top: 2.5rem;
+    max-width: 640px;
+    width: 100%;
   }
 
   .meta-line {
     font-family: var(--font-mono);
     font-size: 0.78rem;
-    color: color-mix(in srgb, var(--ivory) 60%, transparent);
-    margin-top: 1.75rem;
+    color: var(--ink-soft);
+    padding: 1.25rem 0 2.5rem;
     letter-spacing: 0.02em;
   }
 
@@ -382,13 +454,18 @@ const plans = [
     padding: clamp(3rem, 7vw, 5.5rem) clamp(1.25rem, 6vw, 3rem);
   }
 
-  .section--dark {
-    background: var(--oxblood-deep);
-    color: var(--ivory);
+  .section--black {
+    background: var(--black);
+    color: var(--white);
   }
 
-  .section--light {
-    background: var(--paper);
+  .section--white {
+    background: var(--white);
+    color: var(--ink);
+  }
+
+  .section--mist {
+    background: var(--mist);
     color: var(--ink);
   }
 
@@ -402,45 +479,50 @@ const plans = [
     text-align: center;
     max-width: 50ch;
     margin: 0.75rem auto 0;
-    opacity: 0.75;
+    opacity: 0.7;
     font-size: 1rem;
   }
 
-  /* ---------- INSTRUMENTS ---------- */
-  .instrument-grid {
-    list-style: none;
+  /* ---------- PROGRAMS ---------- */
+  .program-grid {
+    max-width: 1000px;
     margin: 2.5rem auto 0;
-    padding: 0;
-    max-width: 960px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1px;
-    background: color-mix(in srgb, var(--brass) 35%, transparent);
-    border: 1px solid color-mix(in srgb, var(--brass) 35%, transparent);
+    background: color-mix(in srgb, var(--baby-blue) 30%, transparent);
+    border: 1px solid color-mix(in srgb, var(--baby-blue) 30%, transparent);
   }
 
-  .instrument-card {
-    background: var(--oxblood-deep);
-    padding: 1.75rem 1.5rem;
+  .program-card {
+    background: var(--black);
+    padding: 1.85rem 1.75rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
 
-  .instrument-name {
-    font-family: var(--font-display);
-    font-size: 1.3rem;
-  }
-
-  .instrument-note {
+  .program-age {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    color: color-mix(in srgb, var(--ivory) 55%, transparent);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    color: var(--baby-blue);
   }
 
-  @media (max-width: 720px) {
-    .instrument-grid {
-      grid-template-columns: repeat(2, 1fr);
+  .program-card h3 {
+    font-size: 1.3rem;
+    font-weight: 500;
+  }
+
+  .program-card p:last-child {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: color-mix(in srgb, var(--white) 75%, transparent);
+  }
+
+  @media (max-width: 680px) {
+    .program-grid {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -457,13 +539,13 @@ const plans = [
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 0.6rem;
-    color: color-mix(in srgb, var(--ink) 85%, var(--oxblood));
+    color: var(--black);
   }
 
   .principle p {
     font-size: 0.95rem;
     line-height: 1.6;
-    opacity: 0.8;
+    color: var(--ink-soft);
   }
 
   @media (max-width: 780px) {
@@ -473,42 +555,45 @@ const plans = [
     }
   }
 
-  /* ---------- INSTRUCTORS ---------- */
-  .instructor-grid {
+  /* ---------- TEACHERS ---------- */
+  .teacher-grid {
     max-width: 1080px;
     margin: 2.5rem auto 0;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
   }
 
-  .instructor-card {
+  .teacher-card {
     padding: 1.75rem;
-    border: 1px solid color-mix(in srgb, var(--brass) 30%, transparent);
+    background: var(--white);
+    border: 1px solid color-mix(in srgb, var(--black) 10%, transparent);
+    border-top: 3px solid var(--baby-blue);
   }
 
-  .instructor-tag {
+  .teacher-tag {
     font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.06em;
-    color: var(--brass);
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    color: var(--baby-blue-deep);
     margin-bottom: 0.6rem;
   }
 
-  .instructor-card h3 {
-    font-size: 1.25rem;
+  .teacher-card h3 {
+    font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 0.5rem;
+    color: var(--black);
   }
 
-  .instructor-card p:last-child {
-    font-size: 0.92rem;
+  .teacher-card p:last-child {
+    font-size: 0.9rem;
     line-height: 1.6;
-    color: color-mix(in srgb, var(--ivory) 78%, transparent);
+    color: var(--ink-soft);
   }
 
-  @media (max-width: 680px) {
-    .instructor-grid {
+  @media (max-width: 780px) {
+    .teacher-grid {
       grid-template-columns: 1fr;
     }
   }
@@ -524,8 +609,8 @@ const plans = [
   }
 
   .plan {
-    background: #fff;
-    border: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+    background: var(--white);
+    border: 1.5px solid color-mix(in srgb, var(--black) 14%, transparent);
     padding: 1.75rem;
     display: flex;
     flex-direction: column;
@@ -534,16 +619,16 @@ const plans = [
   }
 
   .plan--highlight {
-    background: var(--oxblood);
-    color: var(--ivory);
-    border-color: var(--brass);
+    background: var(--black);
+    color: var(--white);
+    border-color: var(--black);
   }
 
   .plan-length {
     font-family: var(--font-mono);
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    opacity: 0.65;
+    opacity: 0.6;
   }
 
   .plan h3 {
@@ -555,8 +640,12 @@ const plans = [
   .plan-price {
     font-family: var(--font-mono);
     font-size: 1.1rem;
-    color: var(--brass);
+    color: var(--baby-blue-deep);
     margin-bottom: 0.4rem;
+  }
+
+  .plan--highlight .plan-price {
+    color: var(--baby-blue);
   }
 
   .plan-detail {
@@ -574,9 +663,13 @@ const plans = [
     font-size: 0.9rem;
   }
 
-  .plan .cta-ghost {
-    border-color: color-mix(in srgb, var(--ink) 25%, transparent);
-    color: var(--ink);
+  .plan--highlight .cta-primary {
+    background: var(--baby-blue);
+    color: var(--black);
+  }
+
+  .plan--highlight .cta-primary:hover {
+    background: var(--baby-blue-deep);
   }
 
   @media (max-width: 780px) {
@@ -585,10 +678,78 @@ const plans = [
     }
   }
 
+  /* ---------- LOCATION / MAP ---------- */
+  .location-layout {
+    max-width: 1080px;
+    margin: 2.5rem auto 0;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .location-info dl {
+    margin: 0;
+    display: grid;
+    row-gap: 0.9rem;
+  }
+
+  .location-info dt {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--baby-blue);
+    margin-bottom: 0.15rem;
+  }
+
+  .location-info dd {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: color-mix(in srgb, var(--white) 88%, transparent);
+  }
+
+  .location-info .cta-primary {
+    background: var(--baby-blue);
+    color: var(--black);
+    width: fit-content;
+  }
+
+  .location-info .cta-primary:hover {
+    background: var(--baby-blue-deep);
+  }
+
+  .location-map {
+    border: 2px solid var(--baby-blue);
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .location-map iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    filter: grayscale(0.15) contrast(1.02);
+  }
+
+  @media (max-width: 820px) {
+    .location-layout {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* ---------- FINAL CTA BAND ---------- */
   .section--band {
-    background: var(--oxblood);
-    color: var(--ivory);
+    background: var(--baby-blue);
+    color: var(--black);
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -596,7 +757,7 @@ const plans = [
     gap: 1.25rem;
   }
 
-  .section--band :global(.staff) {
+  .section--band :global(.keys.divider) {
     max-width: 480px;
     width: 100%;
   }
@@ -607,14 +768,14 @@ const plans = [
 
   .band-sub {
     max-width: 46ch;
-    opacity: 0.8;
+    opacity: 0.85;
     line-height: 1.6;
   }
 
   /* ---------- FOOTER ---------- */
   .footer {
-    background: var(--oxblood-deep);
-    color: color-mix(in srgb, var(--ivory) 65%, transparent);
+    background: var(--black);
+    color: color-mix(in srgb, var(--white) 65%, transparent);
     padding: 2rem clamp(1.25rem, 6vw, 3rem);
     display: flex;
     flex-direction: column;
@@ -636,6 +797,6 @@ const plans = [
   .footer-fine {
     font-family: var(--font-mono);
     font-size: 0.72rem;
-    opacity: 0.6;
+    opacity: 0.55;
   }
 </style>

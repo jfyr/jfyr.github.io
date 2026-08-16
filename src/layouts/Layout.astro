@@ -5,8 +5,8 @@ interface Props {
 }
 
 const {
-  title = "Cadence Music School — Learn to play. Really play.",
-  description = "One-on-one piano, guitar, voice, violin, and drum lessons for kids and adults. Book a trial lesson at Cadence Music School.",
+  title = "Cadence Piano School — Learn piano. Really play.",
+  description = "One-on-one piano lessons for kids, teens, and adults — beginner through exam-prep. Book a trial lesson at Cadence Piano School.",
 } = Astro.props;
 ---
 
@@ -33,15 +33,16 @@ const {
 
 <style is:global>
   :root {
-    /* Color tokens — instrument-case velvet & brass */
-    --oxblood: #3b1220;
-    --oxblood-deep: #240910;
-    --brass: #c9a227;
-    --brass-bright: #e4c558;
-    --ivory: #f3ead8;
-    --ink: #1c1712;
-    --paper: #ede3d0;
-    --patina: #75917a;
+    /* Color tokens — keyboard: white keys, black keys, one blue note */
+    --black: #14171a;
+    --black-soft: #23262b;
+    --white: #ffffff;
+    --mist: #f4fafd;
+    /* pale blue-white for section backgrounds, keeps "white" family */
+    --baby-blue: #9fd8ed;
+    --baby-blue-deep: #57add1;
+    --ink: #1c1f22;
+    --ink-soft: #4c5257;
 
     --font-display: "Fraunces", "Iowan Old Style", serif;
     --font-body: "Work Sans", system-ui, sans-serif;
@@ -68,7 +69,7 @@ const {
 
   body {
     margin: 0;
-    background: var(--paper);
+    background: var(--white);
     color: var(--ink);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
@@ -89,7 +90,7 @@ const {
   }
 
   :focus-visible {
-    outline: 2px solid var(--brass);
+    outline: 2px solid var(--baby-blue-deep);
     outline-offset: 3px;
   }
 
