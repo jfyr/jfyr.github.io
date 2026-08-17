@@ -27,18 +27,30 @@ const programs = [
 
 const principles = [
   {
-    title: "One student, one plan",
-    body: "No fixed curriculum. Your teacher builds each lesson around the pieces you want to play and the pace you actually learn at.",
+    title: "MUZYKA",
+    body: "Bo wszystko zaczyna się od dźwięku. Muzyka buduje emocje, pozwala wyrażać siebie i odkrywać coś nowego. Uczysz się grać utwory, które naprawdę kochasz — i zaczynasz tworzyć własną muzyczną historię.",
   },
   {
-    title: "You leave able to do something",
-    body: "Every lesson ends with a passage you can already play, not just notes about what to practice at home.",
+    title: "ROZWÓJ",
+    body: "Bo każda nowa umiejętność rozwija coś więcej. Pianino uczy koncentracji, pamięci, koordynacji, cierpliwości i systematyczności. Daje Ci przestrzeń, żeby zwolnić, skupić się i zobaczyć własny progres",
   },
   {
-    title: "Practice you'll actually do",
-    body: "Short, specific practice plans — ten focused minutes at the keys beats an hour of vague repetition.",
+    title: "RELACJE",
+    body: "Bo pasja łączy ludzi. Claire Atelier to będzie także miejsce spotkań. Kameralne zajęcia, koncerty, warsztaty i wydarzenia, podczas których możesz poznawać ludzi, dzielić się muzyką i tworzyć wspólne wspomnienia.",
   },
 ];
+
+const pakietsPricingDetails = [
+ { title : "SOLO",
+ pricing: {
+    count: "4 zajęcia",
+    time: "5 tygodni",
+    total: "600 zł",
+    perSession: "150zł" 
+  }
+  }
+];
+
 
 const teachers = [
   {
@@ -60,33 +72,37 @@ const teachers = [
 
 const plans = [
   {
-    name: "Trial lesson",
-    length: "30 min",
-    price: "free",
-    detail: "One private lesson with a teacher matched to your goals and age group. No commitment after.",
+    name: "SOLO",
+    length: "60 min",
+    price: "99 zł ~~150 zł~~", // TODO: zamiast 150 zł zrób przekreślone
+    detail: "Ty, pianino i pełna uwaga prowadzącego. Indywidualne tempo, program dopasowany do Ciebie i przestrzeń na własny rozwój.", // TODO: check if you can add \n inside here or move it to sperateate class (aka Props and pass whole html block instead of String)
     highlight: true,
   },
   {
-    name: "Standard",
-    length: "30 min / week",
-    price: "180 zł / mo",
-    detail: "Weekly private lesson, four per month, with the same teacher throughout.",
+    name: "DUO",
+    length: "60 min",
+    price: "89 zł / osoba",
+    detail: "Nowa pasja, którą możesz dzielić z kimś bliskim. Przyjdź z drugą połówką, przyjacielem, kimś z rodziny czy znajomym.",
     highlight: false,
   },
   {
-    name: "Extended",
-    length: "45 min / week",
-    price: "250 zł / mo",
-    detail: "More room for technique and repertoire — the pace most exam-track and adult students land on.",
+    name: "GRUPA",
+    length: "60 min",
+    price: "79 zł / osoba",
+    detail: "Muzyka, rozwój i nowe relacje. Kameralne grupy 3–4 osób, wspólna nauka i dobra atmosfera. 100 zł / osoba / zajęcia. Grupy tworzone przy zebraniu odpowiedniej liczby osób.",
     highlight: false,
   },
 ];
+
+
 
 // Replace with your real address — the embed and the directions link both read from this.
 const address = "ul. Melodyjna 12, 61-001 Poznań, Poland";
 const mapEmbedSrc = `https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`;
 const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 ---
+
+
 
 <Layout>
   <header class="nav">
@@ -106,41 +122,35 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <p class="eyebrow">Cadence Piano School · est. 2014</p>
+      <p class="eyebrow">Muzyka · Rozwój · Relacje</p>
       <h1>
-        Learn piano.<br />
-        <em>Really</em> play.
+        Claire Atelier<br />
+        <em>Piano Studio</em>
       </h1>
-      <p class="hero-sub">
-        Private piano lessons for kids, teens, and adults — one instrument,
-        taught properly, by teachers who play it for a living.
-      </p>
+      <p class="hero-sub"><i>Tu nie tylko uczysz się grać. <br>
+        Tu rozwijasz siebie i tworzysz relacje.</i><br><br>
+Kameralne studio pianina w Gdańsku dla osób, które chcą znaleźć nową pasję, rozwijać się i spędzać czas w dobrym towarzystwie.
+</p>
       <div class="hero-actions">
-        <a class="cta-primary" href="#pricing">Book a free trial lesson</a>
-        <a class="cta-ghost" href="#programs">See programs</a>
+        <a class="cta-primary" href="#pricing">UMÓW PIERWSZE ZAJĘCIA</a>
+        <!-- <a class="cta-ghost" href="#programs">See programs</a> -->
       </div>
-      <PianoKeys variant="hero" highlightIndex={8} />
-      <p class="meta-line">4 programs · 6 teachers · ages 5 through adult</p>
+      <!-- <PianoKeys variant="hero" highlightIndex={8} /> -->
+      <!-- TODO: dodaj log klary-->
+
+      <p class="meta-line">Grunwaldzka 212/2, Gdańsk</p>
+
     </section>
 
-    <!-- PROGRAMS -->
-    <section id="programs" class="section section--black">
-      <h2>Find your program</h2>
-      <p class="section-sub">One instrument, taught at every stage.</p>
-      <div class="program-grid">
-        {programs.map((p) => (
-          <div class="program-card">
-            <p class="program-age">{p.age}</p>
-            <h3>{p.name}</h3>
-            <p>{p.body}</p>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- PRINCIPLES -->
-    <section class="section section--white">
-      <h2>How lessons work</h2>
+    <section id="teachers" class="section section--mist">
+      <h2>TRZY FILARY. JEDNO MIEJSCE.</h2>
+      <!-- TODO: wyjustuj to  -->
+      <p />
+      <p class="section-sub">Trzy filary. Jedno miejsce. <br>
+W Claire Atelier Nie chodzi tylko o naukę gry na pianinie.
+Chodzi o to, co muzyka może zrobić z Twoim czasem, głową i relacjami z innymi.
+To miejsce powstało wokół trzech wartości. 
+</p>
       <div class="principles">
         {principles.map((p) => (
           <div class="principle">
@@ -151,28 +161,51 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
       </div>
     </section>
 
-    <!-- TEACHERS -->
-    <section id="teachers" class="section section--mist">
-      <h2>The teachers</h2>
-      <p class="section-sub">A few of the six piano teachers at Cadence.</p>
-      <div class="teacher-grid">
-        {teachers.map((person) => (
-          <article class="teacher-card">
-            <p class="teacher-tag">{person.tag}</p>
-            <h3>{person.name}</h3>
-            <p>{person.bio}</p>
-          </article>
-        ))}
-      </div>
-    </section>
 
+
+
+
+
+    <!-- PRINCIPLES -->
+    <!-- <section class="section section--white"> -->
+    <!--   <h2>How lessons work</h2> -->
+    <!--   <div class="principles"> -->
+    <!--     {principles.map((p) => ( -->
+    <!--       <div class="principle"> -->
+    <!--         <h3>{p.title}</h3> -->
+    <!--         <p>{p.body}</p> -->
+    <!--       </div> -->
+    <!--     ))} -->
+    <!--   </div> -->
+    <!-- </section> -->
+    <!---->
+    <!-- TEACHERS -->
+    <!-- <section id="teachers" class="section section--mist"> -->
+    <!--   <h2>The teachers</h2> -->
+    <!--   <p class="section-sub">A few of the six piano teachers at Cadence.</p> -->
+    <!--   <div class="teacher-grid"> -->
+    <!--     {teachers.map((person) => ( -->
+    <!--       <article class="teacher-card"> -->
+    <!--         <p class="teacher-tag">{person.tag}</p> -->
+    <!--         <h3>{person.name}</h3> -->
+    <!--         <p>{person.bio}</p> -->
+    <!--       </article> -->
+    <!--     ))} -->
+    <!--   </div> -->
+    <!-- </section> -->
+    <!---->
     <!-- PRICING -->
     <section id="pricing" class="section section--white">
-      <h2>Schedule &amp; pricing</h2>
+      <h2>OFERTA NA START</h2>
+      <p class="section-sub">Z OKAZJI OTWARCIA CLAIRE ATELIER</p>
+      <!-- TODO: wyjustuj to -->
       <p class="section-sub">
-        Every student starts with a free trial lesson before committing to
-        anything.
-      </p>
+            Zacznij od pierwszych zajęć. 🎹<br>
+            Nie musisz umieć grać. <br>
+            Nie musisz znać nut. <br>
+            Nie musisz mieć własnego pianina. <br>
+      Wystarczy, że chcesz spróbować.
+      </p> 
       <div class="plans">
         {plans.map((plan) => (
           <div class={`plan ${plan.highlight ? "plan--highlight" : ""}`}>
@@ -181,12 +214,68 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
             <p class="plan-price">{plan.price}</p>
             <p class="plan-detail">{plan.detail}</p>
             <a class={plan.highlight ? "cta-primary" : "cta-ghost"} href="#location">
-              {plan.highlight ? "Book your trial" : "Get started"}
+               Zarezerwuj pierwze zajęcia
             </a>
+          </div>
+          ))}
+      </div>
+      <div>
+        <!-- TODO: zrób to ładnie -->
+        <h3 class="section-sub">Oferta na start dotyczy Twoich pierwszych zajęć, ważna do 15 września 2026.</h3>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="contact" class="section section--band">
+      <h2>A JEŚLI CI SIĘ SPODOBA</h2>
+      <p class="band-sub">Jeśli poczujesz, że pianino to coś dla Ciebie, możesz wybrać swój sposób nauki i pakiet dopasowany do Twojego rytmu. <br>
+      4, 8 lub 12 zajęć. <br>
+Możesz zacząć spokojnie.<br>
+Możesz złapać regularność.<br>
+Możesz wejść w swoją nową pasję na dobre.<br>
+Im więcej grasz, tym więcej zyskujesz.<br>
+</p>
+      <!-- <a class="cta-dark" href="mailto:hello@cadencepianoschool.example"> -->
+      <!--   hello@cadencepianoschool.example -->
+      <!-- </a> -->
+    </section>
+
+
+    <!---->
+    <!-- <section id="teachers" class="section section--mist"> -->
+    <!--   <h2>WYBIERZ SWÓJ PAKIET</h2> -->
+    <!--   <!-- TODO: wyjustuj to  --> -->
+    <!--   <p /> -->
+    <!--   <!-- <p class="section-sub">{p.title}</p --> -->
+    <!--     {pakietsPricingDetails.map((p) => ( -->
+    <!--     <div class="principles"> -->
+    <!--       <div class="principle"> -->
+    <!--         <p>{p.pricing.time}</p> -->
+    <!--       </div> -->
+    <!--     </div> -->
+    <!--     ))} -->
+    <!-- </section> -->
+    <!---->
+    
+    <section id="teachers" class="section section--mist">
+      <h2>WYBIERZ SWÓJ PAKIET</h2>
+      <!-- TODO: wyjustuj to  -->
+      <p />
+      <p class="section-sub">Trzy filary. Jedno miejsce. <br>
+W Claire Atelier Nie chodzi tylko o naukę gry na pianinie.
+Chodzi o to, co muzyka może zrobić z Twoim czasem, głową i relacjami z innymi.
+To miejsce powstało wokół trzech wartości. 
+</p>
+      <div class="principles">
+        {pakietsPricingDetails.map((p) => (
+          <div class="principle">
+            <h3>{p.title}</h3>
+            <p>{p.body}</p>
           </div>
         ))}
       </div>
     </section>
+
 
     <!-- LOCATION / MAP -->
     <section id="location" class="section section--black">
