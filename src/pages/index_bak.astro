@@ -1,3 +1,4 @@
+
 ---
 import Layout from "../layouts/Layout.astro";
 import PianoKeys from "../components/PianoKeys.astro";
@@ -17,36 +18,15 @@ const principles = [
   },
 ];
 
-const pakiety = [
+const pakietsPricingDetails = [
   {
-    key: "solo",
     title: "SOLO",
-    tagline: "Ty. Pianino. Twój rytm.",
-    tiers: [
-      { label: "4 ZAJĘCIA", weeks: "5 tygodni", total: "600 zł", perSession: "150 zł / zajęcia" },
-      { label: "8 ZAJĘĆ", weeks: "9 tygodni", total: "1 080 zł", perSession: "135 zł / zajęcia", savings: "oszczędzasz 120 zł" },
-      { label: "12 ZAJĘĆ", weeks: "13 tygodni", total: "1 530 zł", perSession: "127,50 zł / zajęcia", savings: "oszczędzasz 270 zł" },
-    ],
-  },
-  {
-    key: "duo",
-    title: "DUO",
-    tagline: "Bo niektóre pasje są jeszcze przyjemniejsze we dwoje.",
-    tiers: [
-      { label: "4 ZAJĘCIA", weeks: "5 tygodni", total: "1 120 zł / 2 osoby", perSession: "140 zł / osoba / zajęcia" },
-      { label: "8 ZAJĘĆ", weeks: "9 tygodni", total: "2 016 zł / 2 osoby", perSession: "126 zł / osoba / zajęcia" },
-      { label: "12 ZAJĘĆ", weeks: "13 tygodni", total: "2 856 zł / 2 osoby", perSession: "119 zł / osoba / zajęcia" },
-    ],
-  },
-  {
-    key: "grupa",
-    title: "GRUPA",
-    tagline: "Muzyka + rozwój + relacje. Kameralne grupy 3–4 osoby.",
-    tiers: [
-      { label: "4 ZAJĘCIA", weeks: "5 tygodni", total: "400 zł / osoba", perSession: "100 zł / osoba / zajęcia" },
-      { label: "8 ZAJĘĆ", weeks: "9 tygodni", total: "720 zł / osoba", perSession: "90 zł / osoba / zajęcia" },
-      { label: "12 ZAJĘĆ", weeks: "13 tygodni", total: "1 020 zł / osoba", perSession: "85 zł / osoba / zajęcia" },
-    ],
+    pricing: {
+      count: "4 zajęcia",
+      time: "5 tygodni",
+      total: "600 zł",
+      perSession: "150 zł",
+    },
   },
 ];
 
@@ -84,11 +64,8 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
 <Layout>
   <header class="nav">
     <a class="wordmark" href="#top">
-      <!-- <span class="key-mark" aria-hidden="true"></span> -->
-      <div class="main-logo">
-        <img src="../claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" />
-      </div>
-      Claire Atelier
+      <span class="key-mark" aria-hidden="true"></span>
+      Cadence
     </a>
     <nav aria-label="Primary">
       <a href="#pillars">Filary</a>
@@ -102,9 +79,9 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
   <main id="top">
     <!-- HERO -->
     <section class="hero">
-      <!-- <div class="main-logo"> -->
-      <!--   <img src="../claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" /> -->
-      <!-- </div> -->
+      <div class="hero-logo">
+        <img src="../../public/claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" />
+      </div>
       <p class="eyebrow">Muzyka · Rozwój · Relacje</p>
       <h1>
         Claire Atelier<br />
@@ -188,66 +165,27 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
     <!-- PACKAGES -->
     <section id="packages" class="section section--mist">
       <h2>WYBIERZ SWÓJ PAKIET</h2>
-      <p class="section-sub">Im więcej zajęć wybierzesz, tym niższa cena za zajęcia.</p>
-      <div class="package-grid">
-        {pakiety.map((pkg) => (
-          <div class={`package-card package-card--${pkg.key}`}>
-            <h3>{pkg.title}</h3>
-            <p class="package-tagline">{pkg.tagline}</p>
-            <table class="package-table">
-              <thead>
-                <tr>
-                  <th>Pakiet</th>
-                  <th>Czas</th>
-                  <th>Cena</th>
-                  <th>Za zajęcia</th>
-                </tr>
-              </thead>
-              <tbody>
-                {pkg.tiers.map((t) => (
-                  <tr>
-                    <td class="package-tier-label">{t.label}</td>
-                    <td>{t.weeks}</td>
-                    <td>{t.total}</td>
-                    <td>
-                      {t.perSession}
-                      {t.savings && <span class="package-savings">{t.savings}</span>}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+      <div class="principles">
+        {pakietsPricingDetails.map((p) => (
+          <div class="principle">
+            <p class="section-sub">{p.title}</p>
+            <p>{p.pricing.count}</p>
+            <p>{p.pricing.time}</p>
+            <p>{p.pricing.total}</p>
+            <p>{p.pricing.perSession} / zajęcia</p>
           </div>
         ))}
       </div>
     </section>
 
     <!-- PRACTICE -->
-    <section id="practice" class="section section--black">
+    <section id="practice" class="section section--band">
       <h2>CLAIRE PRACTICE</h2>
       <p class="section-sub">
         <b>Nie masz pianina w domu? To nie problem.</b> <br /><br />
         Twoja pasja nie musi kończyć się wraz z zajęciami. <br /><br />
         Jako członek Claire Atelier możesz korzystać z Claire Practice — kameralnej przestrzeni, w której możesz spokojnie ćwiczyć między zajęciami, przygotować się do kolejnych zajęć albo po prostu usiąść przy pianinie i pograć dla siebie.
       </p>
-    </section>
-
-    <section id="contact" class="section section--band">
-      <!-- <PianoKeys variant="divider" /> -->
-      <!---->
-      <div class="main-logo">
-        <img src="../claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" />
-      </div>
-      <h2>Ready to start?</h2>
-      <p class="band-sub">
-        Tell us the student's age and where they're starting from — we'll
-        match them with a teacher and get the first lesson on the calendar
-        this week.
-      </p>
-      <a class="cta-dark" href="mailto:hello@cadencepianoschool.example">
-        hello@cadencepianoschool.example
-      </a>
-      <PianoKeys variant="divider" />
     </section>
 
     <!-- LOCATION / MAP -->
@@ -279,14 +217,26 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
       </div>
     </section>
 
+    <!-- FINAL CTA -->
+    <section id="contact" class="section section--band">
+      <PianoKeys variant="divider" />
+      <h2>Ready to start?</h2>
+      <p class="band-sub">
+        Tell us the student's age and where they're starting from — we'll
+        match them with a teacher and get the first lesson on the calendar
+        this week.
+      </p>
+      <a class="cta-dark" href="mailto:hello@cadencepianoschool.example">
+        hello@cadencepianoschool.example
+      </a>
+      <PianoKeys variant="divider" />
+    </section>
   </main>
 
   <footer class="footer">
     <div class="footer-row">
       <span class="wordmark small">
-      <div class="main-logo">
-        <img src="../claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" />
-      </div>
+        <span class="key-mark" aria-hidden="true"></span>
         Cadence
       </span>
       <p>{address} · Mon–Fri 10:00–20:00, Sat 10:00–15:00</p>
@@ -600,97 +550,6 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
     }
   }
 
-  /* ---------- PACKAGE COMPARISON ---------- */
-  .package-grid {
-    max-width: 1100px;
-    margin: 2.5rem auto 0;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    align-items: start;
-    text-align: left;
-  }
-
-  .package-card {
-    background: var(--white);
-    border: 1.5px solid color-mix(in srgb, var(--black) 12%, transparent);
-    border-radius: 8px;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .package-card--solo {
-    border-top: 3px solid var(--baby-blue-deep);
-  }
-
-  .package-card h3 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    color: var(--black);
-  }
-
-  .package-tagline {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    color: var(--ink-soft);
-    margin-bottom: 1.25rem;
-    min-height: 2.7em;
-  }
-
-  .package-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-  }
-
-  .package-table th {
-    font-family: var(--font-mono);
-    font-size: 0.66rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    text-align: left;
-    color: var(--baby-blue-deep);
-    padding: 0 0.4rem 0.55rem 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--black) 12%, transparent);
-  }
-
-  .package-table td {
-    padding: 0.6rem 0.4rem 0.6rem 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--black) 8%, transparent);
-    vertical-align: top;
-    line-height: 1.35;
-    color: var(--ink);
-  }
-
-  .package-table tr:last-child td {
-    border-bottom: none;
-  }
-
-  .package-tier-label {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.02em;
-    white-space: nowrap;
-  }
-
-  .package-savings {
-    display: block;
-    margin-top: 0.2rem;
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    color: var(--baby-blue-deep);
-  }
-
-  @media (max-width: 900px) {
-    .package-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
   /* ---------- PRICING ---------- */
   .plans {
     max-width: 1000px;
@@ -904,10 +763,5 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
     font-family: var(--font-mono);
     font-size: 0.72rem;
     opacity: 0.55;
-  }
-
-  .main-logo {
-    max-width: 7%;
-    height: auto;
   }
 </style>
