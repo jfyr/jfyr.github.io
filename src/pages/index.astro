@@ -93,10 +93,10 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
     <nav aria-label="Primary">
       <a href="#pillars">Filary</a>
       <a href="#packages">Pakiety</a>
+      <a href="#pricing">Cennik</a>
       <a href="#location">Znajdź nas</a>
-      <a href="#pricing">Pricing</a>
     </nav>
-    <a class="cta-small" href="#pricing">Book a trial lesson</a>
+    <a class="cta-small" href="#pricing">Umów się na lekcję</a>
   </header>
 
   <main id="top">
@@ -223,7 +223,7 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
     </section>
 
     <!-- PRACTICE -->
-    <section id="practice" class="section section--black">
+    <section id="practice" class="section section--white">
       <h2>CLAIRE PRACTICE</h2>
       <p class="section-sub">
         <b>Nie masz pianina w domu? To nie problem.</b> <br /><br />
@@ -244,8 +244,8 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
         match them with a teacher and get the first lesson on the calendar
         this week.
       </p>
-      <a class="cta-dark" href="mailto:hello@cadencepianoschool.example">
-        hello@cadencepianoschool.example
+      <a class="cta-dark" href="mailto:hello@claireatelier.example">
+        hello@claireatelier.example
       </a>
       <PianoKeys variant="divider" />
     </section>
@@ -265,12 +265,12 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
             <dd>+48 61 000 00 00</dd>
           </dl>
           <a class="cta-primary" href={directionsHref} target="_blank" rel="noopener noreferrer">
-            Get directions
+            Nawiguj
           </a>
         </div>
         <div class="location-map">
           <iframe
-            title="Cadence Piano School location"
+            title="Claire Atelier location"
             src={mapEmbedSrc}
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -284,14 +284,16 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
   <footer class="footer">
     <div class="footer-row">
       <span class="wordmark small">
-      <div class="main-logo">
+      <div class="footer-logo">
         <img src="../claire_atelier_kolo_jednolity_sifonn.png" alt="Claire Atelier logo" />
       </div>
-        Cadence
+        Claire Atelier
       </span>
       <p>{address} · Mon–Fri 10:00–20:00, Sat 10:00–15:00</p>
     </div>
-    <p class="footer-fine">© 2026 Cadence Piano School. Every student gets a free trial lesson.</p>
+    <div class="footer-row">
+      <p class="footer-fine">© 2026 Claire Atelier.</p>
+      </div>
   </footer>
 </Layout>
 
@@ -891,7 +893,7 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
   .footer-row {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     gap: 0.75rem;
   }
@@ -908,6 +910,10 @@ const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${enc
 
   .main-logo {
     max-width: 7%;
+    height: auto;
+  }
+  .footer-logo {
+    max-width: 2%;
     height: auto;
   }
 </style>
